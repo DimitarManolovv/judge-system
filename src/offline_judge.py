@@ -7,12 +7,14 @@ class OfflineJudge:
 
     def run_test_case(self, expected_result):
         try:
-            # Изпълняваме програмата и хващаме нейния резултат
-            process = subprocess.Popen(["python", self.program_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                                       universal_newlines=True)
-            output, error = process.communicate(timeout=5)  # Timeout set to 5 seconds
+            process = subprocess.Popen(
+                ["python", self.program_path],
+                stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                universal_newlines=True
+            )
+            output, error = process.communicate(timeout=5)
 
-            # Сравняваме резултата с очаквания резултат
+
             if process.returncode != 0:
                 return False, f"Runtime Error:\n{error}"
 
